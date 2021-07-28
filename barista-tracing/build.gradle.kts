@@ -32,7 +32,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = URI.create("https://maven.pkg.github.com/markelliot/barista")
+            url = URI.create("https://maven.pkg.github.com/markelliot/barista-tracing")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
