@@ -111,17 +111,24 @@ final class DefaultSpan implements Span {
 
     /** Create a new {@link DefaultSpan} and set the current thread state. */
     static Span create(Trace trace, Optional<Span> parent, String opName) {
-        Span span = new DefaultSpan(trace, parent, opName);
+        Span span = new DefaultSpan(trace, parent, opName, Ids.randomId());
         Spans.setThreadSpan(span);
         return span;
     }
 
-    private DefaultSpan(Trace trace, Optional<Span> parent, String opName) {
+    /**
+     * Create a new {@link DefaultSpan} and set the current thread state with the provided parentId.
+     */
+    static Span createWithParent(Trace trace, String parentId, String opName) {
+        return create(trace, Optional.of(new ParentSpan(trace, parentId)), opName);
+    }
+
+    private DefaultSpan(Trace trace, Optional<Span> parent, String opName, String spanId) {
         this.trace = trace;
         this.parent = parent;
         this.opName = opName;
         this.start = clock.instant();
-        this.spanId = Ids.randomId();
+        this.spanId = spanId;
     }
 
     @Override
@@ -159,5 +166,38 @@ final class DefaultSpan implements Span {
     /* visible for testing */
     static void setClock(Clock otherClock) {
         DefaultSpan.clock = otherClock;
+    }
+
+    /** An uncloseable span representing an inherited parent span. */
+    private static final class ParentSpan implements Span {
+
+        private final Trace trace;
+        private final String spanId;
+
+        ParentSpan(Trace trace, String spanId) {
+            this.trace = trace;
+            this.spanId = spanId;
+        }
+
+        @Override
+        public String spanId() {
+            return spanId;
+        }
+
+        @Override
+        public Span sibling(String opName) {
+            throw new UnsupportedOperationException(
+                    "Cannot create a sibling span from a ParentSpan");
+        }
+
+        @Override
+        public Span child(String opName) {
+            return DefaultSpan.create(trace, Optional.of(this), opName);
+        }
+
+        @Override
+        public void close() {
+            throw new UnsupportedOperationException("Cannot close a ParentSpan");
+        }
     }
 }

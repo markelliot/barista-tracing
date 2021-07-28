@@ -22,9 +22,30 @@
 
 package barista.tracing;
 
+import java.util.function.Supplier;
+
 public interface Trace {
     /** Adds a new span to this Trace and returns the span. */
     Span rootSpan(String opName);
+
+    /**
+     * Adds a new span to this Trace, computing opName only if this is an observed trace, and
+     * returns the span.
+     */
+    Span rootSpan(Supplier<String> opName);
+
+    /**
+     * Creates a new Span with a specific parent span id and returns the span. Useful when
+     * inheriting a Trace and Span from another process.
+     */
+    Span withParent(String parentId, String opName);
+
+    /**
+     * Creates a new Span with a specific parent span id, computing opName only if this is an
+     * observed trace, and returns the span. Useful when inheriting a Trace and Span from another
+     * process.
+     */
+    Span withParent(String parentId, Supplier<String> opName);
 
     String traceId();
 }

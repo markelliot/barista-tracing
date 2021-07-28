@@ -25,8 +25,8 @@ package barista.tracing;
 public final class Traces {
     private Traces() {}
 
-    /** Returns an empty trace. */
+    /** Returns an new trace with the specified id that contains no spans. */
     public static Trace create(String traceId, boolean isObservable) {
-        return new DefaultTrace(traceId, isObservable);
+        return isObservable ? new DefaultTrace(traceId) : new EmptyTrace(traceId);
     }
 }

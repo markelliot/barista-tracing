@@ -23,23 +23,33 @@
 package barista.tracing;
 
 import java.util.Optional;
-import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 final class DefaultTrace implements Trace {
-    private final BiFunction<Optional<Span>, String, Span> spanFactory;
     private final String traceId;
 
-    DefaultTrace(String traceId, boolean isObservable) {
-        spanFactory =
-                isObservable
-                        ? (parent, opName) -> DefaultSpan.create(this, parent, opName)
-                        : (parent, opName) -> EmptySpan.INSTANCE;
+    DefaultTrace(String traceId) {
         this.traceId = traceId;
     }
 
     @Override
     public Span rootSpan(String opName) {
-        return spanFactory.apply(Optional.empty(), opName);
+        return DefaultSpan.create(this, Optional.empty(), opName);
+    }
+
+    @Override
+    public Span rootSpan(Supplier<String> opName) {
+        return rootSpan(opName.get());
+    }
+
+    @Override
+    public Span withParent(String parentSpanId, String opName) {
+        return DefaultSpan.createWithParent(this, parentSpanId, opName);
+    }
+
+    @Override
+    public Span withParent(String parentId, Supplier<String> opName) {
+        return withParent(parentId, opName.get());
     }
 
     @Override
