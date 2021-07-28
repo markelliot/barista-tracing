@@ -1,4 +1,5 @@
 # barista-tracing
+[![Publish develop](https://github.com/markelliot/barista-tracing/actions/workflows/publish.yml/badge.svg)](https://github.com/markelliot/barista-tracing/actions/workflows/publish.yml)
 
 An ergonomics-focused library for managing Zipkin-style tracing, both at application boundaries
 and for spans within an application. This library offers both explicit and implicit Span-parenting,
