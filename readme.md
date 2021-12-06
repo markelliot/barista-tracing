@@ -104,3 +104,6 @@ Runnable work = Tracing.wrap(() -> cpuIntensiveTask());
 Or, to make an `ExecutorService` or `ScheduledExecutorService` that always wraps work submitted to
 happen as a child of the current span, use `Tracing#copyTraceStateOnSubmitExecutorService` or
 `Tracing#copyTraceStateOnSubmitScheduledExecutorService`, respectively.
+
+# License
+This project is made available under the [Apache 2.0 License](/LICENSE).
