@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.markelliot.barista.tracing;
+
 /*
  * This file has been derived from
  * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
  * /tracing2/src/main/java/com/palantir/tracing2/EmptySpan.java
  */
-package com.markelliot.barista.tracing;
 
 /**
  * A no-overhead, no-op, no-allocation {@link Span} implementation used to make unobserved traces

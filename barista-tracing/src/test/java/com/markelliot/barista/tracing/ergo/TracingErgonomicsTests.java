@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.markelliot.barista.tracing.ergo;
+
 /*
  * This file has been derived from
  * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
  * /tracing2/src/test/java/com/palantir/tracing2/ergo/TracingErgonomicsTests.java
  */
-
-package com.markelliot.barista.tracing.ergo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

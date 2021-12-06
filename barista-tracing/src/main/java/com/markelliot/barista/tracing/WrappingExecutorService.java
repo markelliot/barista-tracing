@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.markelliot.barista.tracing;
+
 /*
  * This file has been derived from
  * https://github.com/google/guava/blob/9851ee47f9e1248ab347c60cd5dbbe47bd43e82f\
  * /guava/src/com/google/common/util/concurrent/WrappingExecutorService.java
  */
-
-package com.markelliot.barista.tracing;
 
 import java.util.ArrayList;
 import java.util.Collection;
