@@ -18,6 +18,6 @@ jobs:
       - name: Build
         run: ./gradlew --no-daemon build
       - name: Publish
-        run: ./gradlew --no-daemon publish
+        run: ./gradlew --no-daemon publishToSonatype closeAndReleaseSonatypeStagingRepository
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
