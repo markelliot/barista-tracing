@@ -47,7 +47,7 @@ publishing {
                 scm {
                     connection.set("scm:git:https://github.com/markelliot/barista-tracing.git")
                     developerConnection.set("scm:git:https://github.com/markelliot/barista-tracing.git")
-                    url.set("https://github.com/markelliot/result")
+                    url.set("https://github.com/markelliot/barista-tracing")
                 }
             }
         }
