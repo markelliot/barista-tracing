@@ -1,11 +1,5 @@
 /*
- * This file has been derived from
- * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
- * /tracing2/src/test/java/com/palantir/tracing2/ergo/TracingErgonomicsTests.java
- *
- * And is subject to the following license:
- *
- * (c) Copyright 2019 Palantir Technologies Inc. All rights reserved.
+ * (c) Copyright 2021 Mark Elliot. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
+ * This file has been derived from
+ * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
+ * /tracing2/src/test/java/com/palantir/tracing2/ergo/TracingErgonomicsTests.java
+ */
 
-package barista.tracing.ergo;
+package com.markelliot.barista.tracing.ergo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import barista.tracing.CompletedSpan;
-import barista.tracing.Ids;
-import barista.tracing.Span;
-import barista.tracing.Spans;
-import barista.tracing.Trace;
-import barista.tracing.Traces;
+import com.markelliot.barista.tracing.CompletedSpan;
+import com.markelliot.barista.tracing.Ids;
+import com.markelliot.barista.tracing.Span;
+import com.markelliot.barista.tracing.Spans;
+import com.markelliot.barista.tracing.Trace;
+import com.markelliot.barista.tracing.Traces;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
