@@ -19,7 +19,7 @@
  * /guava/src/com/google/common/util/concurrent/WrappingScheduledExecutorService.java
  */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledExecutorService;

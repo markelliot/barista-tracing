@@ -19,7 +19,7 @@
  * /tracing2/src/main/java/com/palantir/tracing2/Spans.java
  */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
 import java.util.Map;
 import java.util.Optional;

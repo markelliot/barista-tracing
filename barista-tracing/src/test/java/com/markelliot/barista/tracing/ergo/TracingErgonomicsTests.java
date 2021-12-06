@@ -19,16 +19,16 @@
  * /tracing2/src/test/java/com/palantir/tracing2/ergo/TracingErgonomicsTests.java
  */
 
-package barista.tracing.ergo;
+package com.markelliot.barista.tracing.ergo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import barista.tracing.CompletedSpan;
-import barista.tracing.Ids;
-import barista.tracing.Span;
-import barista.tracing.Spans;
-import barista.tracing.Trace;
-import barista.tracing.Traces;
+import com.markelliot.barista.tracing.CompletedSpan;
+import com.markelliot.barista.tracing.Ids;
+import com.markelliot.barista.tracing.Span;
+import com.markelliot.barista.tracing.Spans;
+import com.markelliot.barista.tracing.Trace;
+import com.markelliot.barista.tracing.Traces;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;

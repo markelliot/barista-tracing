@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
 import java.time.Duration;
 import java.time.Instant;

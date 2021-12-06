@@ -16,16 +16,34 @@
 /*
  * This file has been derived from
  * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
- * /tracing2/src/main/java/com/palantir/tracing2/Traces.java
+ * /tracing2/src/main/java/com/palantir/tracing2/EmptySpan.java
  */
+package com.markelliot.barista.tracing;
 
-package barista.tracing;
+/**
+ * A no-overhead, no-op, no-allocation {@link Span} implementation used to make unobserved traces
+ * effectively free.
+ *
+ * <p>See {@link DefaultSpan} for a a real {@link Span} implementation.
+ */
+final class EmptySpan implements Span {
+    static final EmptySpan INSTANCE = new EmptySpan();
 
-public final class Traces {
-    private Traces() {}
+    @Override
+    public Span sibling(String _opName) {
+        return INSTANCE;
+    }
 
-    /** Returns an new trace with the specified id that contains no spans. */
-    public static Trace create(String traceId, boolean isObservable) {
-        return isObservable ? new DefaultTrace(traceId) : new EmptyTrace(traceId);
+    @Override
+    public Span child(String _opName) {
+        return INSTANCE;
+    }
+
+    @Override
+    public void close() {}
+
+    @Override
+    public String spanId() {
+        throw new UnsupportedOperationException("cannot get spanId of an empty span");
     }
 }

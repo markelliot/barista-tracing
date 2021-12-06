@@ -19,7 +19,7 @@
  * /tracing2/src/main/java/com/palantir/tracing2/Ids.java
  */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
 import java.util.concurrent.ThreadLocalRandom;
 

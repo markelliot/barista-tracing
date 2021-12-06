@@ -22,7 +22,7 @@ task("printVersion") {
 }
 
 allprojects {
-    group = "io.github.markelliot.barista-tracing"
+    group = "com.markelliot.barista-tracing"
     version = rootProject.version
 }
 

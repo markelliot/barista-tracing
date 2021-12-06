@@ -19,7 +19,7 @@
  * /tracing2/src/main/java/com/palantir/tracing2/Span.java
  */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
 public interface Span extends AutoCloseable {
     String spanId();

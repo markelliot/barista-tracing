@@ -13,42 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * This file has been derived from
- * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
- * /tracing2/src/main/java/com/palantir/tracing2/DefaultTrace.java
- */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 
-final class DefaultTrace implements Trace {
+public final class EmptyTrace implements Trace {
+
     private final String traceId;
 
-    DefaultTrace(String traceId) {
+    EmptyTrace(String traceId) {
         this.traceId = traceId;
     }
 
     @Override
     public Span rootSpan(String opName) {
-        return DefaultSpan.create(this, Optional.empty(), opName);
+        return EmptySpan.INSTANCE;
     }
 
     @Override
     public Span rootSpan(Supplier<String> opName) {
-        return rootSpan(opName.get());
+        return EmptySpan.INSTANCE;
     }
 
     @Override
-    public Span withParent(String parentSpanId, String opName) {
-        return DefaultSpan.createWithParent(this, parentSpanId, opName);
+    public Span withParent(String parentId, String opName) {
+        return EmptySpan.INSTANCE;
     }
 
     @Override
     public Span withParent(String parentId, Supplier<String> opName) {
-        return withParent(parentId, opName.get());
+        return EmptySpan.INSTANCE;
     }
 
     @Override

@@ -19,7 +19,7 @@
  * /guava/src/com/google/common/util/concurrent/WrappingExecutorService.java
  */
 
-package barista.tracing;
+package com.markelliot.barista.tracing;
 
 import java.util.ArrayList;
 import java.util.Collection;
