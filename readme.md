@@ -1,10 +1,14 @@
-# barista-tracing
-[![Publish develop](https://github.com/markelliot/barista-tracing/actions/workflows/publish.yml/badge.svg)](https://github.com/markelliot/barista-tracing/actions/workflows/publish.yml)
-
+barista-tracing
+===============
 An ergonomics-focused library for managing Zipkin-style tracing, both at application boundaries
 and for spans within an application. This library offers both explicit and implicit Span-parenting,
 and efficiently handles discarding tracing when the observability of a trace is disabled.
 
+Depend on barista-tracing via Maven Central at coordinates 
+[`com.markelliot.barista.tracing:barista-tracing:<version>`](https://search.maven.org/artifact/com.markelliot.barista.tracing/barista-tracing).
+
+Usage
+-----
 New traces are commonly created through a web framework (like Barista), or explicitly:
 
 ```java
