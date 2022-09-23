@@ -143,6 +143,11 @@ final class DefaultSpan implements Span {
     }
 
     @Override
+    public String traceId() {
+        return trace.traceId();
+    }
+
+    @Override
     public String spanId() {
         return spanId;
     }
@@ -177,6 +182,11 @@ final class DefaultSpan implements Span {
         ParentSpan(Trace trace, String spanId) {
             this.trace = trace;
             this.spanId = spanId;
+        }
+
+        @Override
+        public String traceId() {
+            return trace.traceId();
         }
 
         @Override
