@@ -21,29 +21,31 @@ import java.util.function.Supplier;
 public final class EmptyTrace implements Trace {
 
     private final String traceId;
+    private final EmptySpan singletonSpan;
 
     EmptyTrace(String traceId) {
         this.traceId = traceId;
+        this.singletonSpan = new EmptySpan(traceId);
     }
 
     @Override
     public Span rootSpan(String opName) {
-        return EmptySpan.INSTANCE;
+        return singletonSpan;
     }
 
     @Override
     public Span rootSpan(Supplier<String> opName) {
-        return EmptySpan.INSTANCE;
+        return singletonSpan;
     }
 
     @Override
     public Span withParent(String parentId, String opName) {
-        return EmptySpan.INSTANCE;
+        return singletonSpan;
     }
 
     @Override
     public Span withParent(String parentId, Supplier<String> opName) {
-        return EmptySpan.INSTANCE;
+        return singletonSpan;
     }
 
     @Override

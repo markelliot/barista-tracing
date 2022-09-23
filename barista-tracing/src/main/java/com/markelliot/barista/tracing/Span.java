@@ -23,6 +23,8 @@ package com.markelliot.barista.tracing;
  */
 
 public interface Span extends AutoCloseable {
+    String traceId();
+
     String spanId();
 
     Span sibling(String opName);
