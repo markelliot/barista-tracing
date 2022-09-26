@@ -33,26 +33,37 @@ public final class UnobservedTrace implements Trace {
 
     @Override
     public Span rootSpan(String opName) {
-        return span;
+        return getSpan();
     }
 
     @Override
     public Span rootSpan(Supplier<String> opName) {
-        return span;
+        return getSpan();
     }
 
     @Override
     public Span withParent(String parentId, String opName) {
-        return span;
+        return getSpan();
     }
 
     @Override
     public Span withParent(String parentId, Supplier<String> opName) {
-        return span;
+        return getSpan();
     }
 
     @Override
     public String traceId() {
         return traceId;
+    }
+
+    /**
+     * Attach thread state and return the singleton span.
+     *
+     * <p>Note that we perform this lazily to maintain the contract that creating a trace does not
+     * immediately attach trace state to the current thread.
+     */
+    private Span getSpan() {
+        Spans.setThreadSpan(span);
+        return span;
     }
 }
