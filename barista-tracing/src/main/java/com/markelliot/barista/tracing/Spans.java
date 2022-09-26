@@ -54,6 +54,16 @@ public final class Spans {
         return getThreadSpan().orElse(AbsentSpan.INSTANCE).child(opName);
     }
 
+    /**
+     * Creates a new child for the thread-attached current span, attaching thread state with a new
+     * trace if necessary.
+     */
+    public static Span forCurrentTraceCreateIfMissing(String opName, boolean isObservable) {
+        return getThreadSpan()
+                .map(span -> span.child(opName))
+                .orElse(Traces.create(Ids.randomId(), isObservable).rootSpan(opName));
+    }
+
     public static Optional<String> maybeGetTraceId() {
         return getThreadSpan().map(Span::traceId);
     }

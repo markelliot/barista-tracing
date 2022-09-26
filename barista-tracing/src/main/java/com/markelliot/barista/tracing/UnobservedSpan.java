@@ -31,9 +31,11 @@ package com.markelliot.barista.tracing;
  */
 final class UnobservedSpan implements Span {
     private final String traceId;
+    private final String spanId;
 
     UnobservedSpan(String traceId) {
         this.traceId = traceId;
+        this.spanId = Ids.randomId();
     }
 
     @Override
@@ -56,6 +58,6 @@ final class UnobservedSpan implements Span {
 
     @Override
     public String spanId() {
-        throw new UnsupportedOperationException("cannot get spanId of an empty span");
+        return spanId;
     }
 }
