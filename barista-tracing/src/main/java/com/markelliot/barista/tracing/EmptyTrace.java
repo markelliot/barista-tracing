@@ -30,26 +30,31 @@ public final class EmptyTrace implements Trace {
 
     @Override
     public Span rootSpan(String opName) {
-        return singletonSpan;
+        return getSpan();
     }
 
     @Override
     public Span rootSpan(Supplier<String> opName) {
-        return singletonSpan;
+        return getSpan();
     }
 
     @Override
     public Span withParent(String parentId, String opName) {
-        return singletonSpan;
+        return getSpan();
     }
 
     @Override
     public Span withParent(String parentId, Supplier<String> opName) {
-        return singletonSpan;
+        return getSpan();
     }
 
     @Override
     public String traceId() {
         return traceId;
+    }
+
+    private Span getSpan() {
+        Spans.setThreadSpan(singletonSpan);
+        return singletonSpan;
     }
 }
