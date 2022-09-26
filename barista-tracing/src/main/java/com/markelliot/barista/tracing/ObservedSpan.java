@@ -98,7 +98,7 @@ import java.util.Optional;
  *
  * <p>Users should generally use {@link Tracing}'s utility methods to transit thread boundaries.
  */
-final class DefaultSpan implements Span {
+final class ObservedSpan implements Span {
     private static Clock clock = Clock.systemUTC();
 
     private final Trace trace;
@@ -109,21 +109,21 @@ final class DefaultSpan implements Span {
 
     private boolean closed = false;
 
-    /** Create a new {@link DefaultSpan} and set the current thread state. */
+    /** Create a new {@link ObservedSpan} and set the current thread state. */
     static Span create(Trace trace, Optional<Span> parent, String opName) {
-        Span span = new DefaultSpan(trace, parent, opName, Ids.randomId());
+        Span span = new ObservedSpan(trace, parent, opName, Ids.randomId());
         Spans.setThreadSpan(span);
         return span;
     }
 
     /**
-     * Create a new {@link DefaultSpan} and set the current thread state with the provided parentId.
+     * Create a new {@link ObservedSpan} and set the current thread state with the provided parentId.
      */
     static Span createWithParent(Trace trace, String parentId, String opName) {
         return create(trace, Optional.of(new ParentSpan(trace, parentId)), opName);
     }
 
-    private DefaultSpan(Trace trace, Optional<Span> parent, String opName, String spanId) {
+    private ObservedSpan(Trace trace, Optional<Span> parent, String opName, String spanId) {
         this.trace = trace;
         this.parent = parent;
         this.opName = opName;
@@ -170,7 +170,7 @@ final class DefaultSpan implements Span {
 
     /* visible for testing */
     static void setClock(Clock otherClock) {
-        DefaultSpan.clock = otherClock;
+        ObservedSpan.clock = otherClock;
     }
 
     /** An uncloseable span representing an inherited parent span. */
@@ -202,7 +202,7 @@ final class DefaultSpan implements Span {
 
         @Override
         public Span child(String opName) {
-            return DefaultSpan.create(trace, Optional.of(this), opName);
+            return ObservedSpan.create(trace, Optional.of(this), opName);
         }
 
         @Override

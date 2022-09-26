@@ -34,7 +34,7 @@ final class ObservedTrace implements Trace {
 
     @Override
     public Span rootSpan(String opName) {
-        return DefaultSpan.create(this, Optional.empty(), opName);
+        return ObservedSpan.create(this, Optional.empty(), opName);
     }
 
     @Override
@@ -44,7 +44,7 @@ final class ObservedTrace implements Trace {
 
     @Override
     public Span withParent(String parentSpanId, String opName) {
-        return DefaultSpan.createWithParent(this, parentSpanId, opName);
+        return ObservedSpan.createWithParent(this, parentSpanId, opName);
     }
 
     @Override

@@ -51,7 +51,7 @@ public final class Spans {
         // note that we make assumptions elsewhere predicated on the idea that it is not and will
         // not be possible to retrieve the current span directly, so it is necessary that we always
         // create a child span when using implicit spans.
-        return getThreadSpan().orElse(EmptySpan.INSTANCE).child(opName);
+        return getThreadSpan().orElse(AbsentSpan.INSTANCE).child(opName);
     }
 
     public static Optional<String> maybeGetTraceId() {

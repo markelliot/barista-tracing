@@ -24,31 +24,31 @@ import java.util.function.Supplier;
 public final class UnobservedTrace implements Trace {
 
     private final String traceId;
-    private final SingletonSpan singletonSpan;
+    private final UnobservedSpan span;
 
     UnobservedTrace(String traceId) {
         this.traceId = traceId;
-        this.singletonSpan = new SingletonSpan(traceId);
+        this.span = new UnobservedSpan(traceId);
     }
 
     @Override
     public Span rootSpan(String opName) {
-        return singletonSpan;
+        return span;
     }
 
     @Override
     public Span rootSpan(Supplier<String> opName) {
-        return singletonSpan;
+        return span;
     }
 
     @Override
     public Span withParent(String parentId, String opName) {
-        return singletonSpan;
+        return span;
     }
 
     @Override
     public Span withParent(String parentId, Supplier<String> opName) {
-        return singletonSpan;
+        return span;
     }
 
     @Override
