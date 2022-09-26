@@ -53,6 +53,12 @@ public final class EmptyTrace implements Trace {
         return traceId;
     }
 
+    /**
+     * Attach thread state and return the singleton span.
+     *
+     * <p>Note that we perform this lazily to maintain the contract that creating a trace does not
+     * immediately attach trace state to the current thread.
+     */
     private Span getSpan() {
         Spans.setThreadSpan(singletonSpan);
         return singletonSpan;
