@@ -117,7 +117,8 @@ final class ObservedSpan implements Span {
     }
 
     /**
-     * Create a new {@link ObservedSpan} and set the current thread state with the provided parentId.
+     * Create a new {@link ObservedSpan} and set the current thread state with the provided
+     * parentId.
      */
     static Span createWithParent(Trace trace, String parentId, String opName) {
         return create(trace, Optional.of(new ParentSpan(trace, parentId)), opName);
