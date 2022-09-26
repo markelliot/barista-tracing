@@ -18,7 +18,9 @@ package com.markelliot.barista.tracing;
 
 import java.util.function.Supplier;
 
-/** A trace that is not observed. */
+/**
+ * A {@link Trace} implementation that produces no spans because the trace itself is not observed.
+ */
 public final class UnobservedTrace implements Trace {
 
     private final String traceId;
