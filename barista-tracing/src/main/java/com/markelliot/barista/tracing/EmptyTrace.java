@@ -21,11 +21,11 @@ import java.util.function.Supplier;
 public final class EmptyTrace implements Trace {
 
     private final String traceId;
-    private final SingletonSpan singletonSpan;
+    private final EmptySpan singletonSpan;
 
     EmptyTrace(String traceId) {
         this.traceId = traceId;
-        this.singletonSpan = new SingletonSpan(traceId);
+        this.singletonSpan = new EmptySpan(traceId);
     }
 
     @Override

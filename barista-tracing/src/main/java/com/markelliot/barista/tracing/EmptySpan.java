@@ -24,14 +24,16 @@ package com.markelliot.barista.tracing;
 
 /**
  * A no-overhead, no-op, no-allocation {@link Span} implementation used to make unobserved traces
- * effectively free. Unlike {@link SingletonSpan} this span contains no inherent traceId.
+ * effectively free.
  *
  * <p>See {@link DefaultSpan} for a real {@link Span} implementation.
  */
 final class EmptySpan implements Span {
-    public static final Span INSTANCE = new EmptySpan();
+    private final String traceId;
 
-    private EmptySpan() {}
+    EmptySpan(String traceId) {
+        this.traceId = traceId;
+    }
 
     @Override
     public Span sibling(String _opName) {
@@ -48,7 +50,7 @@ final class EmptySpan implements Span {
 
     @Override
     public String traceId() {
-        throw new UnsupportedOperationException("cannot get traceId of an empty span");
+        return traceId;
     }
 
     @Override
