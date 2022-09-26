@@ -27,6 +27,6 @@ public final class Traces {
 
     /** Returns an new trace with the specified id that contains no spans. */
     public static Trace create(String traceId, boolean isObservable) {
-        return isObservable ? new DefaultTrace(traceId) : new EmptyTrace(traceId);
+        return isObservable ? new ObservedTrace(traceId) : new UnobservedTrace(traceId);
     }
 }

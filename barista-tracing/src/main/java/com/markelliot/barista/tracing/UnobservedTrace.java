@@ -18,14 +18,17 @@ package com.markelliot.barista.tracing;
 
 import java.util.function.Supplier;
 
-public final class EmptyTrace implements Trace {
+/**
+ * A {@link Trace} implementation that produces no spans because the trace itself is not observed.
+ */
+public final class UnobservedTrace implements Trace {
 
     private final String traceId;
-    private final EmptySpan singletonSpan;
+    private final UnobservedSpan span;
 
-    EmptyTrace(String traceId) {
+    UnobservedTrace(String traceId) {
         this.traceId = traceId;
-        this.singletonSpan = new EmptySpan(traceId);
+        this.span = new UnobservedSpan(traceId);
     }
 
     @Override
@@ -60,7 +63,7 @@ public final class EmptyTrace implements Trace {
      * immediately attach trace state to the current thread.
      */
     private Span getSpan() {
-        Spans.setThreadSpan(singletonSpan);
-        return singletonSpan;
+        Spans.setThreadSpan(span);
+        return span;
     }
 }

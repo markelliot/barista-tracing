@@ -19,42 +19,41 @@ package com.markelliot.barista.tracing;
 /*
  * This file has been derived from
  * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
- * /tracing2/src/main/java/com/palantir/tracing2/EmptySpan.java
+ * /tracing2/src/main/java/com/palantir/tracing2/DefaultTrace.java
  */
 
-/**
- * A no-overhead, no-op, no-allocation {@link Span} implementation used to make unobserved traces
- * effectively free.
- *
- * <p>See {@link DefaultSpan} for a real {@link Span} implementation.
- */
-final class EmptySpan implements Span {
+import java.util.Optional;
+import java.util.function.Supplier;
+
+final class ObservedTrace implements Trace {
     private final String traceId;
 
-    EmptySpan(String traceId) {
+    ObservedTrace(String traceId) {
         this.traceId = traceId;
     }
 
     @Override
-    public Span sibling(String _opName) {
-        return this;
+    public Span rootSpan(String opName) {
+        return ObservedSpan.create(this, Optional.empty(), opName);
     }
 
     @Override
-    public Span child(String _opName) {
-        return this;
+    public Span rootSpan(Supplier<String> opName) {
+        return rootSpan(opName.get());
     }
 
     @Override
-    public void close() {}
+    public Span withParent(String parentSpanId, String opName) {
+        return ObservedSpan.createWithParent(this, parentSpanId, opName);
+    }
+
+    @Override
+    public Span withParent(String parentId, Supplier<String> opName) {
+        return withParent(parentId, opName.get());
+    }
 
     @Override
     public String traceId() {
         return traceId;
-    }
-
-    @Override
-    public String spanId() {
-        throw new UnsupportedOperationException("cannot get spanId of an empty span");
     }
 }
