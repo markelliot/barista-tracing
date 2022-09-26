@@ -16,40 +16,37 @@
 
 package com.markelliot.barista.tracing;
 
-/*
- * This file has been derived from
- * https://github.com/palantir/tracing-java/blob/67c0bce6bbc9cae6aefd1609bacc0f7ac243b5a0\
- * /tracing2/src/main/java/com/palantir/tracing2/DefaultTrace.java
- */
-
-import java.util.Optional;
 import java.util.function.Supplier;
 
-final class DefaultTrace implements Trace {
-    private final String traceId;
+/** A trace that is not observed. */
+public final class UnobservedTrace implements Trace {
 
-    DefaultTrace(String traceId) {
+    private final String traceId;
+    private final SingletonSpan singletonSpan;
+
+    UnobservedTrace(String traceId) {
         this.traceId = traceId;
+        this.singletonSpan = new SingletonSpan(traceId);
     }
 
     @Override
     public Span rootSpan(String opName) {
-        return DefaultSpan.create(this, Optional.empty(), opName);
+        return singletonSpan;
     }
 
     @Override
     public Span rootSpan(Supplier<String> opName) {
-        return rootSpan(opName.get());
+        return singletonSpan;
     }
 
     @Override
-    public Span withParent(String parentSpanId, String opName) {
-        return DefaultSpan.createWithParent(this, parentSpanId, opName);
+    public Span withParent(String parentId, String opName) {
+        return singletonSpan;
     }
 
     @Override
     public Span withParent(String parentId, Supplier<String> opName) {
-        return withParent(parentId, opName.get());
+        return singletonSpan;
     }
 
     @Override
