@@ -2,6 +2,7 @@ plugins {
     `java-library`
     `maven-publish`
     `signing`
+    id("org.jreleaser")
 }
 
 dependencies {
