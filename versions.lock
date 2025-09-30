@@ -2,8 +2,8 @@
 com.jakewharton.nopen:nopen-annotations:1.0.1 (1 constraints: 0405f135)
 
 [Test dependencies]
-net.bytebuddy:byte-buddy:1.15.11 (1 constraints: 7f0bc9ea)
-org.assertj:assertj-core:3.27.3 (1 constraints: 4105513b)
+net.bytebuddy:byte-buddy:1.17.7 (1 constraints: 560b56df)
+org.assertj:assertj-core:3.27.6 (1 constraints: 4405543b)
 org.junit:junit-bom:5.14.0 (7 constraints: cd75cd0a)
 org.junit.jupiter:junit-jupiter:5.14.0 (2 constraints: 7c0ecc71)
 org.junit.jupiter:junit-jupiter-api:5.14.0 (4 constraints: 373998e4)
