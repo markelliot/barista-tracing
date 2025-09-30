@@ -8,7 +8,7 @@ plugins {
     id("com.palantir.consistent-versions") version "2.36.0"
     id("net.ltgt.errorprone") version "4.3.0" apply false
     id("org.inferred.processors") version "3.7.0" apply false
-    id("org.jreleaser") version "1.19.0" apply false
+    id("org.jreleaser") version "1.20.0" apply false
 }
 
 version = "git describe --tags".runCommand().trim() +
